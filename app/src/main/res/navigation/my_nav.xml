@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/allWorkoutsFragment">
+
+    <fragment
+        android:id="@+id/allWorkoutsFragment"
+        android:name="com.example.workoutapp.AllWorkoutsFragment"
+        android:label="all_workout_layout"
+        tools:layout="@layout/all_workout_layout" >
+        <action
+            android:id="@+id/action_allWorkoutsFragment_to_addWorkoutFragment"
+            app:destination="@id/addWorkoutFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/addWorkoutFragment"
+        android:name="com.example.workoutapp.AddWorkoutFragment"
+        android:label="add_workout_layout"
+        tools:layout="@layout/add_workout_layout" >
+        <action
+            android:id="@+id/action_addWorkoutFragment_to_allWorkoutsFragment"
+            app:destination="@id/allWorkoutsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+</navigation>
