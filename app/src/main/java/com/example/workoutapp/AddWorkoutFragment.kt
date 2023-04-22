@@ -2,6 +2,7 @@ package com.example.workoutapp
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -20,14 +21,6 @@ class AddWorkoutFragment : Fragment() {
     private var _binding : AddWorkoutLayoutBinding? = null
     private val binding get() = _binding!!
 
-    private var imageUri: Uri? = null
-
-    val pickImageLauncher: ActivityResultLauncher<Array<String>> =
-        registerForActivityResult(ActivityResultContracts.OpenDocument()){
-            binding.resultImage.setImageURI(it)
-            requireActivity().contentResolver.takePersistableUriPermission(it!!, Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            imageUri = it
-        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,15 +30,20 @@ class AddWorkoutFragment : Fragment() {
 
         _binding = AddWorkoutLayoutBinding.inflate(inflater, container, false)
 
+        arguments?.let {
+            val resourceId = resources.getIdentifier(it.getString("drawable"), "drawable",
+                requireContext().packageName);
+            binding.resultImage.setImageDrawable(resources.getDrawable(resourceId))
+        }
         binding.finishBtn.setOnClickListener {
-            val item = Workout_Item(binding.workoutTitle.text.toString(), imageUri.toString())
+            val item = Workout_Item(binding.workoutTitle.text.toString(), binding.workoutDescription.text.toString() ,binding.resultImage.drawable)
             WorkoutManager.add(item)
 
             findNavController().navigate(R.id.action_addWorkoutFragment_to_allWorkoutsFragment)
         }
 
         binding.imageBtn.setOnClickListener {
-            pickImageLauncher.launch(arrayOf("image/*"))
+            findNavController().navigate(R.id.action_addWorkoutFragment_to_imagePickerFragment2)
         }
 
         return binding.root

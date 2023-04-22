@@ -34,8 +34,7 @@ class ItemAdapter(val items: List<Workout_Item>, val callBack: ItemListener) : R
 
         fun bind(item : Workout_Item){
             binding.workoutTitle.text = item.title
-            //binding.itemDescription.text = item.description
-            //TODO: Glide.with(binding.root).load(item.photo).circleCrop().into(binding.itemImage)
+            Glide.with(binding.root).load(item.photo).circleCrop().into(binding.workoutIcon)
         }
     }
 

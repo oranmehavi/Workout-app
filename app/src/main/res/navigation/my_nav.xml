@@ -29,6 +29,22 @@
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
+            app:popExitAnim="@anim/to_right"
+            app:popUpTo="@id/allWorkoutsFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_addWorkoutFragment_to_imagePickerFragment2"
+            app:destination="@id/imagePickerFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/imagePickerFragment2"
+        android:name="com.example.workoutapp.ImagePickerFragment"
+        android:label="image_selector_layout"
+        tools:layout="@layout/image_selector_layout" >
+        <action
+            android:id="@+id/action_imagePickerFragment2_to_addWorkoutFragment"
+            app:destination="@id/addWorkoutFragment"
+            app:popUpTo="@id/addWorkoutFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
