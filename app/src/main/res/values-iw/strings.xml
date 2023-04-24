@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Workout App</string>
+    <string name="pick_image">בחר תמונה</string>
+    <string name="enter_workout_title">הכנס שם לאימון</string>
+    <string name="describe_workout">הכנס תיאור לאימון</string>
+    <string name="weight_kg">משקל בק\"ג</string>
+    <string name="finish">סיום</string>
+    <string name="workout_title">שם האימון</string>
+    <string name="title">שם האימון</string>
+    <string name="desc">תיאור האימון</string>
+    <string name="weight">משקל:</string>
+    <string name="repeats">חזרות</string>
+    <string name="repeats_item">חזרות:</string>
+</resources>

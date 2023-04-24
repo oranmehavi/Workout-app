@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardUseCompatPadding="true"
     app:contentPadding="10dp"
@@ -16,19 +16,19 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:id="@+id/workout_icon"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/exercise1"
             android:contentDescription="Workout type icon"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Workout Title"
+                android:layout_height="match_parent"
+                android:text="@string/workout_title"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:gravity="center"

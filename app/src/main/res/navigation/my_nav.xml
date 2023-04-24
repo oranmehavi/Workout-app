@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/allWorkoutsFragment"
-        android:name="com.example.workoutapp.AllWorkoutsFragment"
+        android:name="com.example.workoutapp.ui.all_characters.AllWorkoutsFragment"
         android:label="all_workout_layout"
         tools:layout="@layout/all_workout_layout" >
         <action
@@ -17,10 +17,13 @@
             app:exitAnim="@anim/to_right"
             app:popEnterAnim="@anim/from_right"
             app:popExitAnim="@anim/to_left" />
+        <action
+            android:id="@+id/action_allWorkoutsFragment_to_itemDescription"
+            app:destination="@id/itemDescription" />
     </fragment>
     <fragment
         android:id="@+id/addWorkoutFragment"
-        android:name="com.example.workoutapp.AddWorkoutFragment"
+        android:name="com.example.workoutapp.ui.add_character.AddWorkoutFragment"
         android:label="add_workout_layout"
         tools:layout="@layout/add_workout_layout" >
         <action
@@ -32,19 +35,16 @@
             app:popExitAnim="@anim/to_right"
             app:popUpTo="@id/allWorkoutsFragment"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_addWorkoutFragment_to_imagePickerFragment2"
-            app:destination="@id/imagePickerFragment2" />
     </fragment>
     <fragment
-        android:id="@+id/imagePickerFragment2"
-        android:name="com.example.workoutapp.ImagePickerFragment"
-        android:label="image_selector_layout"
-        tools:layout="@layout/image_selector_layout" >
+        android:id="@+id/itemDescription"
+        android:name="com.example.workoutapp.ui.single_character.itemDescription"
+        android:label="fragment_item_description"
+        tools:layout="@layout/fragment_item_description" >
         <action
-            android:id="@+id/action_imagePickerFragment2_to_addWorkoutFragment"
-            app:destination="@id/addWorkoutFragment"
-            app:popUpTo="@id/addWorkoutFragment"
+            android:id="@+id/action_itemDescription_to_allWorkoutsFragment"
+            app:destination="@id/allWorkoutsFragment"
+            app:popUpTo="@id/allWorkoutsFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

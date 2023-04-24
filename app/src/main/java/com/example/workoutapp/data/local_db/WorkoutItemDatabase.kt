@@ -1,11 +1,12 @@
-package com.example.workoutapp
+package com.example.workoutapp.data.local_db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.workoutapp.data.model.Workout_Item
 
-@Database(entities = arrayOf(Workout_Item::class), version = 1, exportSchema = false)
+@Database(entities = [Workout_Item::class], version = 2)
 abstract class WorkoutItemDatabase : RoomDatabase() {
 
     abstract fun itemsDao() : ItemDao

@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Workout App</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="pick_image">Pick Image</string>
+    <string name="enter_workout_title">Enter workout title</string>
+    <string name="describe_workout">Describe Workout</string>
+    <string name="repeats">Repeats</string>
+    <string name="weight_kg">Weight (kg)</string>
+    <string name="finish">Finish</string>
+    <string name="workout_title">Workout Title</string>
+    <string name="title">Title</string>
+    <string name="desc">desc</string>
+    <string name="weight">Weight:</string>
+    <string name="repeats_item">Repeats:</string>
 </resources>

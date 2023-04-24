@@ -1,6 +1,9 @@
-package com.example.workoutapp
+package com.example.workoutapp.data.repository
 
 import android.app.Application
+import com.example.workoutapp.data.local_db.ItemDao
+import com.example.workoutapp.data.local_db.WorkoutItemDatabase
+import com.example.workoutapp.data.model.Workout_Item
 
 class WorkoutItemRepository(application: Application) {
 
@@ -8,7 +11,7 @@ class WorkoutItemRepository(application: Application) {
 
     init {
         val db = WorkoutItemDatabase.getDatabase(application.applicationContext)
-        itemDao = db?.itemsDao()
+        itemDao = db.itemsDao()
     }
 
     fun getItems() = itemDao?.getItems()
@@ -21,8 +24,6 @@ class WorkoutItemRepository(application: Application) {
         itemDao?.deleteItem(workout_item)
     }
 
-    fun getItem(id: Int) {
-        itemDao?.getItem(id)
-    }
+    fun getItem(id: Int) = itemDao?.getItem(id)
 
 }

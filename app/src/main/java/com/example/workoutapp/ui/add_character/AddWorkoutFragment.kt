@@ -1,19 +1,16 @@
-package com.example.workoutapp
+package com.example.workoutapp.ui.add_character
 
-import android.app.Activity
-import android.content.Intent
-import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.workoutapp.R
+import com.example.workoutapp.data.model.Workout_Item
 import com.example.workoutapp.databinding.AddWorkoutLayoutBinding
+import com.example.workoutapp.ui.ItemsViewModel
 
 
 class AddWorkoutFragment : Fragment() {
@@ -22,35 +19,40 @@ class AddWorkoutFragment : Fragment() {
     private val binding get() = _binding!!
 
 
+    private val viewModel: ItemsViewModel by activityViewModels()
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = AddWorkoutLayoutBinding.inflate(inflater, container, false)
 
-        arguments?.let {
-            val resourceId = resources.getIdentifier(it.getString("drawable"), "drawable",
-                requireContext().packageName);
-            binding.resultImage.setImageDrawable(resources.getDrawable(resourceId))
-        }
         binding.finishBtn.setOnClickListener {
-            val item = Workout_Item(binding.workoutTitle.text.toString(), binding.workoutDescription.text.toString() ,binding.resultImage.drawable)
-            WorkoutManager.add(item)
-
+            val item = Workout_Item(
+                binding.workoutTitle.text.toString(),
+                viewModel.imageList[viewModel.getIndex()],
+                binding.workoutDesc.text.toString(),
+                binding.workoutRepeats.text.toString(),
+                binding.workoutWeight.text.toString(),
+            )
+            viewModel.addItem(item)
             findNavController().navigate(R.id.action_addWorkoutFragment_to_allWorkoutsFragment)
         }
 
         binding.imageBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_addWorkoutFragment_to_imagePickerFragment2)
+            viewModel.plusOneIndex()
+            binding.resultImage.setImageResource(viewModel.imageList[viewModel.getIndex()])
         }
 
         return binding.root
     }
-    //TODO: Change from _binding to liveData
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+
