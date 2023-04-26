@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgaround"
     tools:context=".ui.all_characters.AllWorkoutsFragment">
 
     <LinearLayout
@@ -14,8 +15,12 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:textSize="20sp"
             android:layout_height="wrap_content"
-            android:text="My Workouts" />
+            android:text="@string/my_workouts" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
