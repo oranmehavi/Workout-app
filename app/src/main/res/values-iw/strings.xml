@@ -13,4 +13,7 @@
     <string name="repeats">חזרות</string>
     <string name="repeats_item">חזרות:</string>
     <string name="my_workouts">האימונים שלי</string>
+    <string name="return_button">חזור</string>
+    <string name="select_from_gallery">בחר מהגלריה</string>
+    <string name="empty_workout_warning">אימון לא יכול להיות ריק!</string>
 </resources>

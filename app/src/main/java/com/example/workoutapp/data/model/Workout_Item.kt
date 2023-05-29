@@ -9,7 +9,7 @@ data class Workout_Item(
     @ColumnInfo(name="Title")
     val title: String,
     @ColumnInfo(name="Photo")
-    val photo: Int,
+    val photo: String? ,
     @ColumnInfo(name="Description")
     val description: String,
     @ColumnInfo(name="Repeats")

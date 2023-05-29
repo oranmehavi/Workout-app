@@ -19,7 +19,11 @@
             app:popExitAnim="@anim/to_left" />
         <action
             android:id="@+id/action_allWorkoutsFragment_to_itemDescription"
-            app:destination="@id/itemDescription" />
+            app:destination="@id/itemDescription"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
     </fragment>
     <fragment
         android:id="@+id/addWorkoutFragment"
@@ -35,6 +39,13 @@
             app:popExitAnim="@anim/to_right"
             app:popUpTo="@id/allWorkoutsFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_addWorkoutFragment_to_pictureSelectFragment"
+            app:destination="@id/pictureSelectFragment"
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/to_top"
+            app:popEnterAnim="@anim/from_top"
+            app:popExitAnim="@anim/to_bottom" />
     </fragment>
     <fragment
         android:id="@+id/itemDescription"
@@ -44,7 +55,27 @@
         <action
             android:id="@+id/action_itemDescription_to_allWorkoutsFragment"
             app:destination="@id/allWorkoutsFragment"
+            app:enterAnim="@anim/from_top"
+            app:exitAnim="@anim/to_bottom"
+            app:popEnterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/to_top"
             app:popUpTo="@id/allWorkoutsFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_itemDescription_self"
+            app:destination="@id/itemDescription" />
+    </fragment>
+    <fragment
+        android:id="@+id/pictureSelectFragment"
+        android:name="com.example.workoutapp.ui.PictureSelectFragment"
+        android:label="PictureSelectFragment"
+        tools:layout="@layout/picture_select">
+        <action
+            android:id="@+id/action_pictureSelectFragment_to_addWorkoutFragment"
+            app:destination="@id/addWorkoutFragment"
+            app:enterAnim="@anim/from_top"
+            app:exitAnim="@anim/to_bottom"
+            app:popEnterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/to_top" />
     </fragment>
 </navigation>

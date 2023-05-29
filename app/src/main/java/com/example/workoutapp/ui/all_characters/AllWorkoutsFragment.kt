@@ -29,7 +29,7 @@ class AllWorkoutsFragment : Fragment() {
         _binding = AllWorkoutLayoutBinding.inflate(inflater, container, false)
 
         binding.floatingActionButton.setOnClickListener {
-
+            viewModel.photoIndex = 1
             findNavController().navigate(R.id.action_allWorkoutsFragment_to_addWorkoutFragment)
         }
 

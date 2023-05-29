@@ -13,4 +13,7 @@
     <string name="weight">Weight:</string>
     <string name="repeats_item">Repeats:</string>
     <string name="my_workouts">My Workouts</string>
+    <string name="return_button">Return</string>
+    <string name="select_from_gallery">Select From Gallery</string>
+    <string name="empty_workout_warning">WORKOUT CANT BE EMPTY!</string>
 </resources>

@@ -30,24 +30,19 @@ class ItemsViewModel(application: Application):AndroidViewModel(application) {
     }
 
     private val _imageList = mutableListOf(
+        //Order Matters here, if changed
         R.drawable.exercise1,
         R.drawable.exercise2,
         R.drawable.exercise3,
-        R.drawable.exercise4
+        R.drawable.exercise4,
+        R.drawable.exercise5,
+        R.drawable.exercise6,
+        R.drawable.exercise7,
+        R.drawable.exercise8
     )
 
-    val imageList: MutableList<Int> get() = _imageList
-
-    private var index = 0
-
-    fun getIndex(): Int {
-        return index
-    }
-
-    fun plusOneIndex(){
-        index = (index + 1) % _imageList.size
-
-    }
+    val imageList : MutableList<Int> get() = _imageList
+    var photoIndex : Int = 1
 
 
 }
