@@ -15,7 +15,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.workoutapp.R
 import com.example.workoutapp.databinding.PictureSelectBinding
-import com.example.workoutapp.ui.add_character.AddWorkoutFragment
 
 class PictureSelectFragment : Fragment() {
 
@@ -92,10 +91,6 @@ class PictureSelectFragment : Fragment() {
 
         return binding.root
     }
-
-//    private val URIbundle = Bundle().apply {
-//        putParcelable("Uri", imageUri)
-//    }
 
 
     private fun photoSelectNotifier(index : Int){
