@@ -1,6 +1,7 @@
 package com.example.workoutapp.ui
 
 import android.app.Application
+import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -43,6 +44,7 @@ class ItemsViewModel(application: Application):AndroidViewModel(application) {
 
     val imageList : MutableList<Int> get() = _imageList
     var photoIndex : Int = 1
+    var photoURI: Uri? = null
 
 
 }
