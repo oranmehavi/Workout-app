@@ -5,9 +5,11 @@ import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.workoutapp.R
 import com.example.workoutapp.data.repository.WorkoutItemRepository
 import com.example.workoutapp.data.model.Workout_Item
+import kotlinx.coroutines.launch
 
 
 class ItemsViewModel(application: Application):AndroidViewModel(application) {
@@ -23,11 +25,15 @@ class ItemsViewModel(application: Application):AndroidViewModel(application) {
     }
 
     fun addItem(item: Workout_Item){
-        repository.addItem(item)
+        viewModelScope.launch {
+            repository.addItem(item)
+        }
     }
 
     fun deleteItem(item: Workout_Item){
-        repository.deleteItem(item)
+        viewModelScope.launch {
+            repository.deleteItem(item)
+        }
     }
 
     private val _imageList = mutableListOf(

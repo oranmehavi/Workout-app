@@ -12,10 +12,10 @@ import com.example.workoutapp.data.model.Workout_Item
 interface ItemDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addItem(item: Workout_Item)
+    suspend fun addItem(item: Workout_Item)
 
     @Delete
-    fun deleteItem(vararg item: Workout_Item)
+    suspend fun deleteItem(vararg item: Workout_Item)
 
     @Query("SELECT * FROM Items")
     fun getItems() : LiveData<List<Workout_Item>>

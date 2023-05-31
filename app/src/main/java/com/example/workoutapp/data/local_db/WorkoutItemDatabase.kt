@@ -17,8 +17,8 @@ abstract class WorkoutItemDatabase : RoomDatabase() {
         private var instance: WorkoutItemDatabase? = null
 
         fun getDatabase(context: Context) = instance ?: synchronized(this) {
-            Room.databaseBuilder(context.applicationContext, WorkoutItemDatabase::class.java, "db").
-                    allowMainThreadQueries().build()
+            Room.databaseBuilder(context.applicationContext, WorkoutItemDatabase::class.java, "db")
+                    .build()
         }
     }
 }
