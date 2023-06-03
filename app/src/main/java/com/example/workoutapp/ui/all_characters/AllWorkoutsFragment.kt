@@ -1,9 +1,9 @@
 package com.example.workoutapp.ui.all_characters
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -26,6 +26,7 @@ class AllWorkoutsFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View {
+        setHasOptionsMenu(true)
         _binding = AllWorkoutLayoutBinding.inflate(inflater, container, false)
 
         binding.floatingActionButton.setOnClickListener {
@@ -57,6 +58,25 @@ class AllWorkoutsFragment : Fragment() {
         }
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.action_delete){
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle(getString(R.string.confirm_delete))
+                .setMessage(getString(R.string.delete_confirmation_message))
+                .setPositiveButton(getString(R.string.yes))
+                { p0, p1 ->
+                    viewModel.deleteAll()
+                    Toast.makeText(requireContext(), getString(R.string.all_items_delete_confirmed) , Toast.LENGTH_SHORT).show()}
+                .show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroyView() {

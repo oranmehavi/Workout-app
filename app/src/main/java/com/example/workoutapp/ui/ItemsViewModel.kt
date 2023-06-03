@@ -29,6 +29,10 @@ class ItemsViewModel(application: Application):AndroidViewModel(application) {
         repository.deleteItem(item)
     }
 
+    fun deleteAll(){
+        repository.deleteAll()
+    }
+
     private val _imageList = mutableListOf(
         //Order Matters here, if changed
         R.drawable.exercise1,

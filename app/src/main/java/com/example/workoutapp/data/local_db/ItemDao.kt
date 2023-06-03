@@ -23,4 +23,7 @@ interface ItemDao {
     @Query("SELECT * FROM items WHERE ID lIKE :id")
     fun getItem(id:Int): Workout_Item
 
+    @Query("DELETE FROM items")
+    fun deleteAll()
+
 }
