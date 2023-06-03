@@ -3,6 +3,7 @@ package com.example.workoutapp.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,13 +22,12 @@ class PictureSelectFragment : Fragment() {
     private var _binding : PictureSelectBinding? = null
     private val binding get() = _binding!!
 
-    private var imageUri: Uri? = null
 
     private val pickImageLauncher: ActivityResultLauncher<Array<String>> =
         registerForActivityResult(ActivityResultContracts.OpenDocument()){
-            binding.customResultImg.setImageURI(it)
+            binding.imageBtn9.setImageURI(it)
             requireActivity().contentResolver.takePersistableUriPermission(it!!, Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            imageUri = it
+            viewModel.photoURI = it
         }
 
 
@@ -78,15 +78,17 @@ class PictureSelectFragment : Fragment() {
         }
         //custom one
         binding.imageBtn9.setOnClickListener {
-            photoSelectNotifier(9)
+            //photoSelectNotifier(9)
             viewModel.photoIndex = 9
             pickImageLauncher.launch(arrayOf("image/*"))
-            binding.customResultImg.setImageURI(imageUri)
+            binding.imageBtn9.setImageURI(viewModel.photoURI)
+
         }
 
         binding.returnBtn.setOnClickListener {
             //activity?.supportFragmentManager?.popBackStack() failed try
-            findNavController().navigate(R.id.action_pictureSelectFragment_to_addWorkoutFragment, bundleOf("URI" to imageUri))
+            //findNavController().navigate(R.id.action_pictureSelectFragment_to_addWorkoutFragment, bundleOf("URI" to imageUri))
+            findNavController().popBackStack()
         }
 
         return binding.root

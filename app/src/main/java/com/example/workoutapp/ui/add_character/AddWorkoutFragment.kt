@@ -2,6 +2,7 @@ package com.example.workoutapp.ui.add_character
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,10 +32,9 @@ class AddWorkoutFragment : Fragment() {
 
         _binding = AddWorkoutLayoutBinding.inflate(inflater, container, false)
 
-        var photoURI: Uri? = null
+        //var photoURI: Uri? = null
         if (viewModel.photoIndex == 9) {
-            photoURI = requireArguments().getParcelable("URI")
-            Glide.with(this).load(photoURI).into(binding.resultImage)
+            Glide.with(this).load(viewModel.photoURI).into(binding.resultImage)
         } else {
             binding.resultImage.setImageResource(viewModel.imageList[viewModel.photoIndex - 1])
         }
@@ -43,7 +43,7 @@ class AddWorkoutFragment : Fragment() {
             if (binding.workoutTitle.text?.isEmpty() != true && binding.workoutDesc.text?.isEmpty() != true) {
                 val item = Workout_Item(
                     binding.workoutTitle.text.toString(),
-                    if (viewModel.photoIndex != 9) viewModel.imageList[viewModel.photoIndex - 1].toString() else photoURI?.toString(),
+                    if (viewModel.photoIndex != 9) viewModel.imageList[viewModel.photoIndex - 1].toString() else viewModel.photoURI?.toString(),
                     binding.workoutDesc.text.toString(),
                     binding.workoutRepeats.text.toString(),
                     binding.workoutWeight.text.toString(),
