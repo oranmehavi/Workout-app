@@ -52,5 +52,6 @@ class ItemsViewModel(application: Application):AndroidViewModel(application) {
     var photoIndex : Int = 1
     var photoURI: Uri? = null
 
+    val location: LiveData<String> = LocationUpdatesLiveData(application.applicationContext)
 
 }
