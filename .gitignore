@@ -9,3 +9,4 @@
 .cxx
 local.properties
 /app/src/main/java/com/example/workoutapp/api/API_KEY.kt
+API_KEY.kt
