@@ -15,6 +15,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 class LocationUpdatesLiveData(context: Context) : LiveData<String>() {
@@ -22,9 +23,9 @@ class LocationUpdatesLiveData(context: Context) : LiveData<String>() {
     private val locationClient: FusedLocationProviderClient
         = LocationServices.getFusedLocationProviderClient(context)
 
-    private val geocoder by lazy {
-        Geocoder(context)
-    }
+//    private val geocoder by lazy {
+//        Geocoder(context, Locale.ENGLISH)
+//    }
 
     private val job = Job()
 
@@ -32,17 +33,13 @@ class LocationUpdatesLiveData(context: Context) : LiveData<String>() {
 
     private val locationRequest = LocationRequest.Builder(
         Priority.PRIORITY_HIGH_ACCURACY,
-        TimeUnit.SECONDS.toMillis(20)
+        TimeUnit.SECONDS.toMillis(5)
     ).build()
 
     private val locationCallback = object: LocationCallback() {
         override fun onLocationResult(p0: LocationResult) {
             p0.lastLocation?.let {
-                scope.launch {
-                    val addresses = geocoder.getFromLocation(it.latitude, it.longitude, 1)
-                    postValue(addresses?.get(0)?.locality )
-                }
-
+                postValue("${it.latitude},${it.longitude}")
             }
         }
     }

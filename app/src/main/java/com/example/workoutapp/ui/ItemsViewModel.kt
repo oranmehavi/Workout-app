@@ -2,16 +2,22 @@ package com.example.workoutapp.ui
 
 import android.app.Application
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.workoutapp.R
+import com.example.workoutapp.api.API_KEY
+import com.example.workoutapp.api.RetrofitInstance
 import com.example.workoutapp.data.repository.WorkoutItemRepository
 import com.example.workoutapp.data.model.Workout_Item
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 
 
+const val TAG = "ItemsViewModel"
 class ItemsViewModel(application: Application):AndroidViewModel(application) {
 
     private val repository = WorkoutItemRepository(application)
@@ -53,5 +59,30 @@ class ItemsViewModel(application: Application):AndroidViewModel(application) {
     var photoURI: Uri? = null
 
     val location: LiveData<String> = LocationUpdatesLiveData(application.applicationContext)
+    var temperature: Double? = null
+    var weatherIcon: String? = null
+    fun getWeather(coordinates: String) {
+
+        viewModelScope.launch {
+            try {
+               val response = RetrofitInstance.api.getWeather(
+                   API_KEY,
+                   coordinates)
+
+                if (response.isSuccessful && response.body() != null) {
+                    temperature = response.body()!!.current.temp_c
+                    weatherIcon = response.body()!!.current.condition.icon
+                }
+            }
+            catch (e: IOException) {
+                Log.d(TAG, "IOException, You don't have an internet connection")
+            } catch (e: HttpException) {
+                Log.d(TAG, "HttpException, unexpected response")
+                return@launch
+            }
+
+
+        }
+    }
 
 }

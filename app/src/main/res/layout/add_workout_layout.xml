@@ -10,6 +10,24 @@
     android:textColorHint="@color/brightRed"
     tools:context=".ui.add_character.AddWorkoutFragment">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/weatherIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/result_image"
         android:layout_width="150dp"
@@ -126,12 +144,6 @@
         android:textColor="@color/greyish"
         android:layout_marginTop="10dp"
         android:text="@string/finish" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
 
 
 </LinearLayout>

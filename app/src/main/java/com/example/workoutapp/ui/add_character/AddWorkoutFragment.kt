@@ -17,9 +17,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.workoutapp.R
+import com.example.workoutapp.api.RetrofitInstance
 import com.example.workoutapp.data.model.Workout_Item
 import com.example.workoutapp.databinding.AddWorkoutLayoutBinding
 import com.example.workoutapp.ui.ItemsViewModel
+import retrofit2.Retrofit
 
 
 class AddWorkoutFragment : Fragment() {
@@ -89,7 +91,13 @@ class AddWorkoutFragment : Fragment() {
     private fun getLocationUpdates() {
 
         viewModel.location.observe(viewLifecycleOwner) {
-            binding.textView.text = it
+            viewModel.getWeather(it)
+            if (viewModel.temperature != null && viewModel.weatherIcon != null) {
+                binding.temperature.text = viewModel.temperature?.toInt().toString() + "°C"
+                binding.temperature.visibility = View.VISIBLE
+                Glide.with(this).load("https://" + viewModel.weatherIcon!!).into(binding.weatherIcon)
+            }
+
         }
     }
 }
