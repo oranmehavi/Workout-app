@@ -2,9 +2,7 @@ package com.example.workoutapp.ui.add_character
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,11 +15,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.workoutapp.R
-import com.example.workoutapp.api.RetrofitInstance
 import com.example.workoutapp.data.model.Workout_Item
 import com.example.workoutapp.databinding.AddWorkoutLayoutBinding
 import com.example.workoutapp.ui.ItemsViewModel
-import retrofit2.Retrofit
+
 
 
 class AddWorkoutFragment : Fragment() {
@@ -93,7 +90,12 @@ class AddWorkoutFragment : Fragment() {
         viewModel.location.observe(viewLifecycleOwner) {
             viewModel.getWeather(it)
             if (viewModel.temperature != null && viewModel.weatherIcon != null) {
-                binding.temperature.text = viewModel.temperature?.toInt().toString() + "°C"
+                val temperature = viewModel.temperature?.toInt()
+                binding.temperature.text = temperature.toString() + "°C"
+                if (temperature!! >= 35 || temperature!! < 20) binding.weatherText.text = getString(R.string.critical_weather)
+                if (temperature!! >= 20 || temperature!! <= 30) binding.weatherText.text = getString(R.string.comfortable_weather)
+                if (temperature!! > 30 || temperature!! < 35) binding.weatherText.text = getString(R.string.drink_water)
+                binding.weatherText.visibility = View.VISIBLE
                 binding.temperature.visibility = View.VISIBLE
                 Glide.with(this).load("https://" + viewModel.weatherIcon!!).into(binding.weatherIcon)
             }

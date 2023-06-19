@@ -16,4 +16,7 @@
     <string name="return_button">Return</string>
     <string name="select_from_gallery">Select From Gallery</string>
     <string name="empty_workout_warning">WORKOUT CANT BE EMPTY!</string>
+    <string name="critical_weather">Outdoor activities are not recommended</string>
+    <string name="drink_water">Don\'t forget to drink water during outdoor activities</string>
+    <string name="comfortable_weather">Great weather for outdoor activities</string>
 </resources>
