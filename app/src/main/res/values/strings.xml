@@ -20,4 +20,7 @@
     <string name="delete_confirmation_message">Are you sure you want to delete all items?</string>
     <string name="all_items_delete_confirmed">Items Deleted</string>
     <string name="yes">Yes</string>
+    <string name="critical_weather">Outdoor activities are not recommended</string>
+    <string name="drink_water">Don\'t forget to drink water during outdoor activities</string>
+    <string name="comfortable_weather">Great weather for outdoor activities</string>
 </resources>

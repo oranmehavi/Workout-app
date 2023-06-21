@@ -1,12 +1,15 @@
 package com.example.workoutapp.ui.add_character
 
-import android.net.Uri
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -17,19 +20,33 @@ import com.example.workoutapp.databinding.AddWorkoutLayoutBinding
 import com.example.workoutapp.ui.ItemsViewModel
 
 
+
 class AddWorkoutFragment : Fragment() {
 
     private var _binding : AddWorkoutLayoutBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ItemsViewModel by activityViewModels()
 
+    private val locationRequestLauncher: ActivityResultLauncher<String>
+        = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            if (it) {
+                getLocationUpdates()
+            }
 
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED) {
+            getLocationUpdates()
+        }
+        else {
+            locationRequestLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
         _binding = AddWorkoutLayoutBinding.inflate(inflater, container, false)
 
         //var photoURI: Uri? = null
@@ -66,6 +83,24 @@ class AddWorkoutFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun getLocationUpdates() {
+
+        viewModel.location.observe(viewLifecycleOwner) {
+            viewModel.getWeather(it)
+            if (viewModel.temperature != null && viewModel.weatherIcon != null) {
+                val temperature = viewModel.temperature?.toInt()
+                binding.temperature.text = temperature.toString() + "°C"
+                if (temperature!! >= 35 || temperature!! < 20) binding.weatherText.text = getString(R.string.critical_weather)
+                if (temperature!! >= 20 || temperature!! <= 30) binding.weatherText.text = getString(R.string.comfortable_weather)
+                if (temperature!! > 30 || temperature!! < 35) binding.weatherText.text = getString(R.string.drink_water)
+                binding.weatherText.visibility = View.VISIBLE
+                binding.temperature.visibility = View.VISIBLE
+                Glide.with(this).load("https://" + viewModel.weatherIcon!!).into(binding.weatherIcon)
+            }
+
+        }
     }
 }
 

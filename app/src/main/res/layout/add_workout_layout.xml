@@ -10,6 +10,29 @@
     android:textColorHint="@color/brightRed"
     tools:context=".ui.add_character.AddWorkoutFragment">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/weatherIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:id="@+id/weatherText"
+            android:layout_marginRight="15dp"/>
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/result_image"
         android:layout_width="150dp"
