@@ -36,6 +36,7 @@ class ItemAdapter(private val items: List<Workout_Item>, val callBack: ItemListe
         fun bind(item : Workout_Item){
             val NumericPhoto : Int? = item.photo?.toIntOrNull()
             binding.workoutTitle.text = item.title
+            binding.dateAndTime.text = item.dateAndTime
             //Need to handle both URI  and Drawables so I need 2 use cases, one int one string
             if(NumericPhoto == null) {
                 Glide.with(binding.root).load(item.photo).circleCrop().into(binding.workoutIcon)

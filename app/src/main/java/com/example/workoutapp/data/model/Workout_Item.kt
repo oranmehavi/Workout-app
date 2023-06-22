@@ -15,7 +15,9 @@ data class Workout_Item(
     @ColumnInfo(name="Repeats")
     val repeats: String?,
     @ColumnInfo(name="Weight")
-    val weight:String?) {
+    val weight:String?,
+    @ColumnInfo(name="DateAndTime")
+    val dateAndTime: String) {
 
     @PrimaryKey(autoGenerate = true)
     var id : Int = 0

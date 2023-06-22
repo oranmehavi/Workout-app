@@ -19,4 +19,5 @@
     <string name="critical_weather">פעילות בחוץ לא מומלצת</string>
     <string name="drink_water">מומלץ לשתות מים בפעילות בחוץ</string>
     <string name="comfortable_weather">מזג אויר מצוין לפעילות</string>
+    <string name="date_and_time">תאריך ושעה</string>
 </resources>
