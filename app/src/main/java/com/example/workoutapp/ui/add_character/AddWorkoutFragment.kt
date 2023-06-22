@@ -62,7 +62,7 @@ class AddWorkoutFragment : Fragment() {
         binding.finishBtn.setOnClickListener {
             val calendarInstance = Calendar.getInstance()
             val currentDateAndTime = "${calendarInstance.get(Calendar.DAY_OF_MONTH)}." +
-                    "${calendarInstance.get(Calendar.MONTH)}.${calendarInstance.get(Calendar.YEAR)}" +
+                    "${calendarInstance.get(Calendar.MONTH) + 1}.${calendarInstance.get(Calendar.YEAR)}" +
                     "    ${calendarInstance.get(Calendar.HOUR_OF_DAY)}:${calendarInstance.get(Calendar.MINUTE)}"
             if (binding.workoutTitle.text?.isEmpty() != true && binding.workoutDesc.text?.isEmpty() != true) {
                 val item = Workout_Item(
