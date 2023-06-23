@@ -16,7 +16,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.workoutapp.R
 import com.example.workoutapp.databinding.PictureSelectBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PictureSelectFragment : Fragment() {
 
     private var _binding : PictureSelectBinding? = null

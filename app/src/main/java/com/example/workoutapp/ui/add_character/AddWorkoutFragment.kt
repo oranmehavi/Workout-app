@@ -18,12 +18,13 @@ import com.example.workoutapp.R
 import com.example.workoutapp.data.model.Workout_Item
 import com.example.workoutapp.databinding.AddWorkoutLayoutBinding
 import com.example.workoutapp.ui.ItemsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Calendar
 import java.util.Date
 
-
+@AndroidEntryPoint
 class AddWorkoutFragment : Fragment() {
 
     private var _binding : AddWorkoutLayoutBinding? = null

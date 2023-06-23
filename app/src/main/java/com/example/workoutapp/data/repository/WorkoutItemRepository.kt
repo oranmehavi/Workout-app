@@ -4,12 +4,14 @@ import android.app.Application
 import com.example.workoutapp.data.local_db.ItemDao
 import com.example.workoutapp.data.local_db.WorkoutItemDatabase
 import com.example.workoutapp.data.model.Workout_Item
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class WorkoutItemRepository(application: Application)  {
+class WorkoutItemRepository @Inject constructor(application: Application)  {
 
 
     private var itemDao : ItemDao?

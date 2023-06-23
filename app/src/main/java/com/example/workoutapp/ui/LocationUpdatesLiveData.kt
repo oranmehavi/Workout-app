@@ -11,14 +11,16 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-class LocationUpdatesLiveData(context: Context) : LiveData<String>() {
+class LocationUpdatesLiveData @Inject constructor(context: Context) : LiveData<String>() {
 
     private val locationClient: FusedLocationProviderClient
         = LocationServices.getFusedLocationProviderClient(context)

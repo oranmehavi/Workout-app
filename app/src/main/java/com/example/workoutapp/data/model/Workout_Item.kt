@@ -3,9 +3,12 @@ package com.example.workoutapp.data.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+
 
 @Entity(tableName = "Items")
-data class Workout_Item(
+data class Workout_Item @Inject constructor(
     @ColumnInfo(name="Title")
     val title: String,
     @ColumnInfo(name="Photo")

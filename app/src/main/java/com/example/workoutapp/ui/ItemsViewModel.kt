@@ -12,13 +12,17 @@ import com.example.workoutapp.api.API_KEY
 import com.example.workoutapp.api.RetrofitInstance
 import com.example.workoutapp.data.repository.WorkoutItemRepository
 import com.example.workoutapp.data.model.Workout_Item
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 
 
 const val TAG = "ItemsViewModel"
-class ItemsViewModel(application: Application):AndroidViewModel(application) {
+
+
+class ItemsViewModel @Inject constructor(application: Application):AndroidViewModel(application) {
 
     private val repository = WorkoutItemRepository(application)
     val items: LiveData<List<Workout_Item>>? get() = repository.getItems()

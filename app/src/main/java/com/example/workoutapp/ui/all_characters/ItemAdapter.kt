@@ -9,8 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.workoutapp.data.model.Workout_Item
 import com.example.workoutapp.databinding.WorkoutLayoutBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class ItemAdapter(private val items: List<Workout_Item>, val callBack: ItemListener) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>(){
+
+class ItemAdapter @Inject constructor(private val items: List<Workout_Item>, val callBack: ItemListener) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>(){
 
     interface ItemListener{
         fun onItemClicked(index : Int)

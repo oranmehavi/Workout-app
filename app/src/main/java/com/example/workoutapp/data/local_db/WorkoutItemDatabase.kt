@@ -5,6 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.workoutapp.data.model.Workout_Item
+import dagger.hilt.android.AndroidEntryPoint
+
 
 @Database(entities = [Workout_Item::class], version = 2)
 abstract class WorkoutItemDatabase : RoomDatabase() {

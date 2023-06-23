@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.workoutapp.R
 import com.example.workoutapp.databinding.AllWorkoutLayoutBinding
 import com.example.workoutapp.ui.ItemsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AllWorkoutsFragment : Fragment() {
 
     private var _binding : AllWorkoutLayoutBinding? = null
