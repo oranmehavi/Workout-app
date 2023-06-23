@@ -1,6 +1,6 @@
 package com.example.workoutapp.api
 
-import dagger.hilt.android.AndroidEntryPoint
+
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
