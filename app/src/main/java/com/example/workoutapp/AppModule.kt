@@ -1,6 +1,5 @@
 package com.example.workoutapp
 
-import android.provider.SyncStateContract.Constants
 import com.example.workoutapp.api.WeatherAPI
 import dagger.Module
 import dagger.Provides
@@ -27,5 +26,4 @@ class AppModule {
     fun provideAPI(retrofit: Retrofit) : WeatherAPI {
         return retrofit.create(WeatherAPI::class.java)
     }
-
 }

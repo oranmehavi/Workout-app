@@ -13,12 +13,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
+
 class ItemAdapter @Inject constructor(private val items: List<Workout_Item>, val callBack: ItemListener) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>(){
 
     interface ItemListener{
         fun onItemClicked(index : Int)
         fun onItemLongClicked(index : Int)
     }
+
 
     inner class ItemViewHolder(private val binding : WorkoutLayoutBinding)
         : RecyclerView.ViewHolder(binding.root), OnClickListener, OnLongClickListener{

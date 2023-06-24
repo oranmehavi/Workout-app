@@ -23,9 +23,10 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Calendar
 import java.util.Date
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class AddWorkoutFragment : Fragment() {
+class AddWorkoutFragment @Inject constructor(): Fragment() {
 
     private var _binding : AddWorkoutLayoutBinding? = null
     private val binding get() = _binding!!

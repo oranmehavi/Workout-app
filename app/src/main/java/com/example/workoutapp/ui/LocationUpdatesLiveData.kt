@@ -20,22 +20,17 @@ import java.util.Locale
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
+
+
 class LocationUpdatesLiveData @Inject constructor(context: Context) : LiveData<String>() {
 
     private val locationClient: FusedLocationProviderClient
         = LocationServices.getFusedLocationProviderClient(context)
 
-//    private val geocoder by lazy {
-//        Geocoder(context, Locale.ENGLISH)
-//    }
-
-    private val job = Job()
-
-    private val scope = CoroutineScope(job + Dispatchers.IO)
 
     private val locationRequest = LocationRequest.Builder(
         Priority.PRIORITY_HIGH_ACCURACY,
-        TimeUnit.SECONDS.toMillis(5)
+        TimeUnit.SECONDS.toMillis(3)
     ).build()
 
     private val locationCallback = object: LocationCallback() {
@@ -58,7 +53,6 @@ class LocationUpdatesLiveData @Inject constructor(context: Context) : LiveData<S
 
     override fun onInactive() {
         super.onInactive()
-        job.cancel()
         locationClient.removeLocationUpdates(locationCallback)
     }
 }
