@@ -24,7 +24,8 @@ const val TAG = "ItemsViewModel"
 @HiltViewModel
 class ItemsViewModel @Inject constructor(application: Application):AndroidViewModel(application) {
 
-    private val repository = WorkoutItemRepository(application)
+
+    @Inject lateinit var repository: WorkoutItemRepository
     val items: LiveData<List<Workout_Item>>? get() = repository.getItems()
 
     private val _chosenItem  = MutableLiveData<Workout_Item>()
