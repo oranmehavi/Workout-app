@@ -1,6 +1,10 @@
 package com.example.workoutapp.api
 
-data class Current(
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+
+
+data class Current @Inject constructor(
     val cloud: Int,
     val condition: Condition,
     val feelslike_c: Double,

@@ -1,6 +1,10 @@
 package com.example.workoutapp.api
 
-data class Location(
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+
+
+data class Location @Inject constructor(
     val country: String,
     val lat: Double,
     val localtime: String,

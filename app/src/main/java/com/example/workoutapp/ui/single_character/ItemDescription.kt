@@ -9,6 +9,8 @@ import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.example.workoutapp.databinding.FragmentItemDescriptionBinding
 import com.example.workoutapp.ui.ItemsViewModel
+import dagger.hilt.android.AndroidEntryPoint
+
 
 class itemDescription : Fragment() {
 

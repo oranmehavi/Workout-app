@@ -19,8 +19,5 @@
     <string name="critical_weather">פעילות בחוץ לא מומלצת</string>
     <string name="drink_water">מומלץ לשתות מים בפעילות בחוץ</string>
     <string name="comfortable_weather">מזג אויר מצוין לפעילות</string>
-    <string name="confirm_delete">אשר מחיקה</string>
-    <string name="delete_confirmation_message">האם את/ה בטוח/ה במחיקת כל הפריטים?</string>
-    <string name="all_items_delete_confirmed">כל הפריטים נמחקו</string>
-    <string name="yes">כן</string>
+    <string name="date_and_time">תאריך ושעה</string>
 </resources>

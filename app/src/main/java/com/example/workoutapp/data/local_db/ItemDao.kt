@@ -7,6 +7,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.workoutapp.data.model.Workout_Item
+import dagger.hilt.android.AndroidEntryPoint
+
 
 @Dao
 interface ItemDao {

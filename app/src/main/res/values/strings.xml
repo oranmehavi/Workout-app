@@ -23,4 +23,5 @@
     <string name="critical_weather">Outdoor activities are not recommended</string>
     <string name="drink_water">Don\'t forget to drink water during outdoor activities</string>
     <string name="comfortable_weather">Great weather for outdoor activities</string>
+    <string name="date_and_time">Date and Time</string>
 </resources>

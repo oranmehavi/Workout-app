@@ -16,8 +16,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.workoutapp.R
 import com.example.workoutapp.databinding.PictureSelectBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class PictureSelectFragment : Fragment() {
+@AndroidEntryPoint
+class PictureSelectFragment @Inject constructor(): Fragment() {
 
     private var _binding : PictureSelectBinding? = null
     private val binding get() = _binding!!

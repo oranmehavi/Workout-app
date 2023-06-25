@@ -18,10 +18,15 @@ import com.example.workoutapp.R
 import com.example.workoutapp.data.model.Workout_Item
 import com.example.workoutapp.databinding.AddWorkoutLayoutBinding
 import com.example.workoutapp.ui.ItemsViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.util.Calendar
+import java.util.Date
+import javax.inject.Inject
 
-
-
-class AddWorkoutFragment : Fragment() {
+@AndroidEntryPoint
+class AddWorkoutFragment @Inject constructor(): Fragment() {
 
     private var _binding : AddWorkoutLayoutBinding? = null
     private val binding get() = _binding!!
@@ -57,6 +62,10 @@ class AddWorkoutFragment : Fragment() {
         }
 
         binding.finishBtn.setOnClickListener {
+            val calendarInstance = Calendar.getInstance()
+            val currentDateAndTime = "${calendarInstance.get(Calendar.DAY_OF_MONTH)}." +
+                    "${calendarInstance.get(Calendar.MONTH) + 1}.${calendarInstance.get(Calendar.YEAR)}" +
+                    "    ${calendarInstance.get(Calendar.HOUR_OF_DAY)}:${calendarInstance.get(Calendar.MINUTE)}"
             if (binding.workoutTitle.text?.isEmpty() != true && binding.workoutDesc.text?.isEmpty() != true) {
                 val item = Workout_Item(
                     binding.workoutTitle.text.toString(),
@@ -64,6 +73,7 @@ class AddWorkoutFragment : Fragment() {
                     binding.workoutDesc.text.toString(),
                     binding.workoutRepeats.text.toString(),
                     binding.workoutWeight.text.toString(),
+                    currentDateAndTime
                 )
                 viewModel.addItem(item)
                 findNavController().navigate(R.id.action_addWorkoutFragment_to_allWorkoutsFragment)
