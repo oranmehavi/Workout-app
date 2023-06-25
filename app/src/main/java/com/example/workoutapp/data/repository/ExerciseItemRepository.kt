@@ -10,19 +10,16 @@ import com.example.workoutapp.data.model.Workout_Item
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.coroutines.CoroutineContext
 
-class ExerciseItemRepository(application: Application)  {
+@Singleton
+class ExerciseItemRepository @Inject constructor(private val exerciseDao: ExerciseDao){
 
 
-    private var exerciseDao : ExerciseDao?
 
-    init {
-        val db = WorkoutItemDatabase.getDatabase(application.applicationContext)
-        exerciseDao = db?.exerciseDao()
-    }
-
-    fun getExercises() = exerciseDao?.getExercises()
+    fun getExercises(workoutId: String) = exerciseDao?.getExercises(workoutId)
 
     suspend fun addExercise(exercise_item: Exercise_Item) {
         exerciseDao?.addExercise(exercise_item)
@@ -33,8 +30,6 @@ class ExerciseItemRepository(application: Application)  {
     }
 
     fun getItem(id: Int) = exerciseDao?.getExercise(id)
-
-    fun deleteAll() = exerciseDao?.deleteAll()
 
 
 }

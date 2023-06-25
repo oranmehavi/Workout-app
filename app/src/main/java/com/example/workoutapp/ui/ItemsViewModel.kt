@@ -11,8 +11,10 @@ import com.example.workoutapp.R
 import com.example.workoutapp.api.API_KEY
 import com.example.workoutapp.api.WeatherAPI
 import com.example.workoutapp.data.model.Exercise_Item
+import com.example.workoutapp.data.model.WorkoutWithExercises
 import com.example.workoutapp.data.repository.WorkoutItemRepository
 import com.example.workoutapp.data.model.Workout_Item
+import com.example.workoutapp.data.repository.ExerciseItemRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -27,6 +29,8 @@ class ItemsViewModel @Inject constructor(application: Application):AndroidViewMo
 
 
     @Inject lateinit var repository: WorkoutItemRepository
+
+
     val items: LiveData<List<Workout_Item>>? get() = repository.getItems()
 
     private val _chosenItem  = MutableLiveData<Workout_Item>()
@@ -50,7 +54,16 @@ class ItemsViewModel @Inject constructor(application: Application):AndroidViewMo
     }
 
     fun deleteAll(){
-        repository.deleteAll()
+        viewModelScope.launch {
+            repository.deleteAll()
+        }
+
+    }
+
+    fun getWorkoutWithSets(workoutId: String): LiveData<WorkoutWithExercises>? {
+
+        return repository.getWorkoutWithSets(workoutId)
+
     }
 
     private val _imageList = mutableListOf(

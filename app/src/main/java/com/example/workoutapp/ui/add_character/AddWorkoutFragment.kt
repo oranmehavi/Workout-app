@@ -3,6 +3,7 @@ package com.example.workoutapp.ui.add_character
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Calendar
 import java.util.Date
+import java.util.UUID
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -37,6 +39,8 @@ class AddWorkoutFragment @Inject constructor(): Fragment() {
     private val binding get() = _binding!!
     private val viewModel: ItemsViewModel by activityViewModels()
     private val exerciseViewModel : ExercisesViewModel by  activityViewModels()
+
+    lateinit var workoutId: String
 
     private val locationRequestLauncher: ActivityResultLauncher<String>
         = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
@@ -60,6 +64,8 @@ class AddWorkoutFragment @Inject constructor(): Fragment() {
         }
         _binding = AddWorkoutLayoutBinding.inflate(inflater, container, false)
 
+        workoutId = UUID.randomUUID().toString()
+        exerciseViewModel.workoutId = workoutId
         //var photoURI: Uri? = null
         if (viewModel.photoIndex == 9) {
             Glide.with(this).load(viewModel.photoURI).into(binding.resultImage)
@@ -77,7 +83,8 @@ class AddWorkoutFragment @Inject constructor(): Fragment() {
                     binding.workoutTitle.text.toString(),
                     if (viewModel.photoIndex != 9) viewModel.imageList[viewModel.photoIndex - 1].toString() else viewModel.photoURI?.toString(),
                     binding.workoutDesc.text.toString(),
-                    currentDateAndTime
+                    currentDateAndTime,
+                    workoutId
                 )
                 item.exerciseList = viewModel.tempExerciseList
                 viewModel.addItem(item)
@@ -98,7 +105,8 @@ class AddWorkoutFragment @Inject constructor(): Fragment() {
                     binding.exerciseName.text.toString(),
                     binding.exerciseWeight.text.toString(),
                     binding.exerciseSets.text.toString(),
-                    binding.exerciseReps.text.toString()
+                    binding.exerciseReps.text.toString(),
+                    workoutId
                 )
 
                 exerciseViewModel.addItem(exercise)
@@ -122,6 +130,7 @@ class AddWorkoutFragment @Inject constructor(): Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         exerciseViewModel.items?.observe(viewLifecycleOwner){
+            Log.d("addworkoutfragment", it?.size.toString())
             binding.exerciseRecycler.adapter = ExerciseAdapter(it, object : ExerciseAdapter.ItemListener {
                 override fun onItemClicked(index: Int) {
                     val item = (binding.exerciseRecycler.adapter as ExerciseAdapter).itemAt(index)

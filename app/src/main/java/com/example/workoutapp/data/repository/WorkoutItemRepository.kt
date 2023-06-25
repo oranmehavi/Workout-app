@@ -29,7 +29,8 @@ class WorkoutItemRepository @Inject constructor(private val itemDao: ItemDao)  {
     }
 
     fun getItem(id: Int) = itemDao.getItem(id)
+    suspend fun deleteAll() = itemDao?.deleteAll()
 
-    fun deleteAll() = itemDao?.deleteAll()
+    fun getWorkoutWithSets(workoutId: String) = itemDao?.getWorkoutWithSets(workoutId)
 
 }

@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.IdentityHashMap
 import javax.inject.Inject
 
 
@@ -16,7 +17,10 @@ data class Workout_Item @Inject constructor(
     @ColumnInfo(name="Description")
     val description: String,
     @ColumnInfo(name="DateAndTime")
-    val dateAndTime: String) {
+    val dateAndTime: String,
+    @ColumnInfo(name = "workoutId")
+    val workoutId: String
+){
 
     @PrimaryKey(autoGenerate = true)
     var id : Int = 0

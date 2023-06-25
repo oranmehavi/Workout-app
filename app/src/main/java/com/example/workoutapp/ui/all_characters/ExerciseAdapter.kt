@@ -34,9 +34,9 @@ class ExerciseAdapter(private val items: List<Exercise_Item>, val callBack: Item
 
         fun bind(item : Exercise_Item){
             binding.exerciseName.text = item.exerciseName
-            binding.exerciseSets.text = item.Sets.toString()
-            binding.exerciseReps.text = item.Reps.toString()
-            binding.exerciseWeight.text = item.Weight.toString()
+            binding.exerciseSets.text = item.Sets
+            binding.exerciseReps.text = item.Reps
+            binding.exerciseWeight.text = item.Weight
         }
     }
 

@@ -13,7 +13,9 @@ data class Exercise_Item(
     @ColumnInfo(name="Reps")
     val Reps: String,
     @ColumnInfo(name="Sets")
-    val Sets : String
+    val Sets : String,
+    @ColumnInfo(name = "workoutId")
+    val workoutId: String
 ){
     @PrimaryKey(autoGenerate = true)
     var id : Int = 0

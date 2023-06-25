@@ -37,7 +37,6 @@ class AllWorkoutsFragment @Inject constructor(): Fragment() {
 
         binding.floatingActionButton.setOnClickListener {
             viewModel.photoIndex = 1
-            exerciseViewModel.deleteAll()
             findNavController().navigate(R.id.action_allWorkoutsFragment_to_addWorkoutFragment)
         }
 

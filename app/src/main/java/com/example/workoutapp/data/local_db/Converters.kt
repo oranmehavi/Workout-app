@@ -6,7 +6,7 @@ import com.example.workoutapp.data.model.Exercise_Item
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-//@ProvidedTypeConverter
+
 class Converters {
     @TypeConverter
     fun fromExerciseItemList(exerciseItemList: List<Exercise_Item>): String {

@@ -43,5 +43,8 @@ class AppModule {
     @Singleton
     fun provideItemDao(database: WorkoutItemDatabase) = database.itemsDao()
 
+    @Provides
+    @Singleton
+    fun provideExerciseDao(database: WorkoutItemDatabase) = database.exerciseDao()
 
 }

@@ -7,8 +7,8 @@ data class WorkoutWithExercises(
     @Embedded
     val workout : Workout_Item,
     @Relation(
-        parentColumn = "id",
-        entityColumn = "id"
+        parentColumn = "workoutId",
+        entityColumn = "workoutId"
     )
     val exercises : List<Exercise_Item>?
 )
