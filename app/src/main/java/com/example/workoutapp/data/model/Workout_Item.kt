@@ -15,13 +15,11 @@ data class Workout_Item @Inject constructor(
     val photo: String? ,
     @ColumnInfo(name="Description")
     val description: String,
-    @ColumnInfo(name="Repeats")
-    val repeats: String?,
-    @ColumnInfo(name="Weight")
-    val weight:String?,
     @ColumnInfo(name="DateAndTime")
     val dateAndTime: String) {
 
     @PrimaryKey(autoGenerate = true)
     var id : Int = 0
+    @ColumnInfo(name = "Exercises")
+    var exerciseList = mutableListOf<Exercise_Item>()
 }

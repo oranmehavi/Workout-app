@@ -20,4 +20,10 @@
     <string name="drink_water">מומלץ לשתות מים בפעילות בחוץ</string>
     <string name="comfortable_weather">מזג אויר מצוין לפעילות</string>
     <string name="date_and_time">תאריך ושעה</string>
+    <string name="reps">חזרות:</string>
+    <string name="sets">סטים:</string>
+    <string name="exercise_name">שם תרגיל</string>
+    <string name="add_exercise">הוסף תרגיל</string>
+    <string name="empty_ex_warning">תרגילים אינם יכולים להיות ריקים</string>
+    <string name="added_exercise">תרגיל התווסף בהצלחה!</string>
 </resources>

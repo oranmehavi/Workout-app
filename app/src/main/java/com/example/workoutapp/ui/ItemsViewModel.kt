@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.workoutapp.R
 import com.example.workoutapp.api.API_KEY
 import com.example.workoutapp.api.WeatherAPI
+import com.example.workoutapp.data.model.Exercise_Item
 import com.example.workoutapp.data.repository.WorkoutItemRepository
 import com.example.workoutapp.data.model.Workout_Item
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -67,6 +68,7 @@ class ItemsViewModel @Inject constructor(application: Application):AndroidViewMo
     val imageList : MutableList<Int> get() = _imageList
     var photoIndex : Int = 1
     var photoURI: Uri? = null
+    var tempExerciseList = mutableListOf<Exercise_Item>()
 
     val location: LiveData<String> = LocationUpdatesLiveData(application.applicationContext)
     var temperature: Double? = null

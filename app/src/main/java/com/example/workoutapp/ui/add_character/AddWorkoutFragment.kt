@@ -13,11 +13,16 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.workoutapp.R
+import com.example.workoutapp.data.model.Exercise_Item
 import com.example.workoutapp.data.model.Workout_Item
 import com.example.workoutapp.databinding.AddWorkoutLayoutBinding
+import com.example.workoutapp.ui.ExercisesViewModel
 import com.example.workoutapp.ui.ItemsViewModel
+import com.example.workoutapp.ui.all_characters.ExerciseAdapter
+import com.example.workoutapp.ui.all_characters.ItemAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -31,6 +36,7 @@ class AddWorkoutFragment @Inject constructor(): Fragment() {
     private var _binding : AddWorkoutLayoutBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ItemsViewModel by activityViewModels()
+    private val exerciseViewModel : ExercisesViewModel by  activityViewModels()
 
     private val locationRequestLauncher: ActivityResultLauncher<String>
         = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
@@ -71,10 +77,9 @@ class AddWorkoutFragment @Inject constructor(): Fragment() {
                     binding.workoutTitle.text.toString(),
                     if (viewModel.photoIndex != 9) viewModel.imageList[viewModel.photoIndex - 1].toString() else viewModel.photoURI?.toString(),
                     binding.workoutDesc.text.toString(),
-                    binding.workoutRepeats.text.toString(),
-                    binding.workoutWeight.text.toString(),
                     currentDateAndTime
                 )
+                item.exerciseList = viewModel.tempExerciseList
                 viewModel.addItem(item)
                 findNavController().navigate(R.id.action_addWorkoutFragment_to_allWorkoutsFragment)
             }
@@ -83,11 +88,57 @@ class AddWorkoutFragment @Inject constructor(): Fragment() {
             }
         }
 
+        binding.addExerciseBtn.setOnClickListener {
+            if(binding.exerciseName.text?.isEmpty() != true &&
+                binding.exerciseSets.text?.isEmpty() != true &&
+                binding.exerciseReps.text?.isEmpty() != true &&
+                binding.exerciseWeight.text?.isEmpty() != true){
+
+                val exercise = Exercise_Item(
+                    binding.exerciseName.text.toString(),
+                    binding.exerciseWeight.text.toString(),
+                    binding.exerciseSets.text.toString(),
+                    binding.exerciseReps.text.toString()
+                )
+
+                exerciseViewModel.addItem(exercise)
+                viewModel.tempExerciseList.add(exercise)
+                Toast.makeText(requireContext(), getString(R.string.added_exercise), Toast.LENGTH_SHORT).show()
+
+            }
+            else{
+                Toast.makeText(requireContext(), getString(R.string.empty_ex_warning), Toast.LENGTH_SHORT).show()
+            }
+        }
+
         binding.imageBtn.setOnClickListener {
             findNavController().navigate(R.id.action_addWorkoutFragment_to_pictureSelectFragment)
         }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        exerciseViewModel.items?.observe(viewLifecycleOwner){
+            binding.exerciseRecycler.adapter = ExerciseAdapter(it, object : ExerciseAdapter.ItemListener {
+                override fun onItemClicked(index: Int) {
+                    val item = (binding.exerciseRecycler.adapter as ExerciseAdapter).itemAt(index)
+                    exerciseViewModel.setItem(item)
+                    //TODO: Make it editable
+
+                }
+                override fun onItemLongClicked(index: Int) {
+                    val item = (binding.exerciseRecycler.adapter as ExerciseAdapter).itemAt(index)
+                    exerciseViewModel.deleteItem(item)
+                    viewModel.tempExerciseList.removeAt(index)
+                }
+            })
+            binding.exerciseRecycler.layoutManager = LinearLayoutManager(requireContext())
+
+        }
+
     }
 
     override fun onDestroyView() {
