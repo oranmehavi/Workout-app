@@ -1,21 +1,16 @@
 package com.example.workoutapp.ui.single_character
 
-import android.content.Context
+
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
-import com.example.workoutapp.R
-import com.example.workoutapp.data.model.Exercise_Item
 import com.example.workoutapp.databinding.FragmentItemDescriptionBinding
 import com.example.workoutapp.ui.ItemsViewModel
-import dagger.hilt.android.AndroidEntryPoint
 
 
 class itemDescription : Fragment() {
@@ -60,13 +55,6 @@ class itemDescription : Fragment() {
             }
 
         }
-
-
-
-        //viewModel.chosenItem.value?.id
-
-
-
 
     }
     override fun onDestroyView() {

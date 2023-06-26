@@ -65,8 +65,8 @@
 
                 <ListView
                     android:id="@+id/exerciseview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="101dp" />
+                    android:layout_width="274dp"
+                    android:layout_height="250dp" />
 
 
             </LinearLayout>

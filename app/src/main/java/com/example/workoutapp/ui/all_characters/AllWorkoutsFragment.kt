@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.workoutapp.R
 import com.example.workoutapp.databinding.AllWorkoutLayoutBinding
-import com.example.workoutapp.ui.ExercisesViewModel
 import com.example.workoutapp.ui.ItemsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -23,8 +22,6 @@ class AllWorkoutsFragment @Inject constructor(): Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: ItemsViewModel by activityViewModels()
-
-    private val exerciseViewModel : ExercisesViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

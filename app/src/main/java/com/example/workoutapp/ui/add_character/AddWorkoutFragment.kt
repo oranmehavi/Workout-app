@@ -3,7 +3,6 @@ package com.example.workoutapp.ui.add_character
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,12 +22,8 @@ import com.example.workoutapp.databinding.AddWorkoutLayoutBinding
 import com.example.workoutapp.ui.ExercisesViewModel
 import com.example.workoutapp.ui.ItemsViewModel
 import com.example.workoutapp.ui.all_characters.ExerciseAdapter
-import com.example.workoutapp.ui.all_characters.ItemAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.Calendar
-import java.util.Date
 import java.util.UUID
 import javax.inject.Inject
 
@@ -66,7 +61,6 @@ class AddWorkoutFragment @Inject constructor(): Fragment() {
 
         workoutId = UUID.randomUUID().toString()
         exerciseViewModel.workoutId = workoutId
-        //var photoURI: Uri? = null
         if (viewModel.photoIndex == 9) {
             Glide.with(this).load(viewModel.photoURI).into(binding.resultImage)
         } else {
@@ -130,7 +124,6 @@ class AddWorkoutFragment @Inject constructor(): Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         exerciseViewModel.items?.observe(viewLifecycleOwner){
-            Log.d("addworkoutfragment", it?.size.toString())
             binding.exerciseRecycler.adapter = ExerciseAdapter(it, object : ExerciseAdapter.ItemListener {
                 override fun onItemClicked(index: Int) {
                     val item = (binding.exerciseRecycler.adapter as ExerciseAdapter).itemAt(index)
